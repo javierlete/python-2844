@@ -1,14 +1,14 @@
-# nombre = input('Dime tu nombre: ') # 'Javier Lete'
+nombre = input('Dime tu nombre: ') # 'Javier Lete'
 
-# print('Hola', nombre) # Muestra Hola mundo en pantalla
+print('Hola', nombre) # Muestra Hola mundo en pantalla
 
-# saludo = 'Hola ' + nombre
+saludo = 'Hola ' + nombre
 
-# print(saludo)
+print(saludo)
 
-# saludo = 42
+saludo = 42
 
-# print(saludo)
+print(saludo)
 
 x = float(input('Dime x: ')) # Pedimos la x y la convertimos a entero
 y = float(input('Dime y: '))
