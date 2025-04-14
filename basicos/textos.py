@@ -41,3 +41,6 @@ print('Abreviatura de Javier', abreviatura)
 
 print('Nombre completo', abreviatura + nombre[4:])
 
+print(len(nombre))
+
+# nombre[3] = 'k' # No lo permite Python porque los textos son inmutables
