@@ -18,3 +18,17 @@ match nombre:
         print('El ejemplo con patas')
     case _:
         print('No te conozco')
+
+punto = (5, 9)
+
+match punto:
+    case (0, 0):
+        print('Origen de coordenadas')
+    case (x, 0):
+        print(f'La x vale {x}')
+    case (0, y):
+        print(f'La y vale {y}')
+    case (x, y):
+        print(f'P({x}, {y})')
+    case _:
+        raise ValueError('No es un punto')
