@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla con datos dinámicos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+    <h1>{{ saludo }}</h1>
+    <p>Este mensaje viene desde el backend de Flask.</p>
+
+    <form>
+        <input name="nombre" placeholder="Nombre">
+        <button>Saludar</button>        
+    </form>
+</body>
+</html>
