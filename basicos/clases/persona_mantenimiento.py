@@ -1,9 +1,6 @@
 from persona import Persona
 
-personas = {
-    1: Persona(1, 'Javier', 'Lete'),
-    2: Persona(2, 'Pepe', 'Pérez')
-}
+personas = {}
 
 def mantenimiento():
     repetir = True
@@ -20,6 +17,10 @@ def mostrar_menu():
 3. Añadir
 4. Modificar
 5. Borrar
+6. Cargar
+7. Guardar
+8. Importar JSON
+9. Exportar JSON
 
 0. Salir
           ''')
@@ -44,6 +45,18 @@ def procesar_opcion(opcion):
         case 5:
             print('BORRAR')
             borrar()
+        case 6:
+            print('CARGAR')
+            cargar()
+        case 7:
+            print('GUARDAR')
+            guardar()
+        case 8:
+            print('IMPORTAR JSON')
+            importar_json()
+        case 9:
+            print('EXPORTAR JSON')
+            exportar_json()
         case 0:
             print('SALIR')
             salir()
@@ -54,7 +67,11 @@ def procesar_opcion(opcion):
     return True
 
 def listado():
-    for persona in personas.values:
+    if not personas:
+        print('No hay personas')
+        return
+    
+    for persona in personas.values():
         print(persona)
 
 def buscar_por_id():
@@ -63,7 +80,12 @@ def buscar_por_id():
     print(personas[id])
 
 def anyadir():
-    id = max(personas.keys()) + 1
+    # id = max(personas.keys()) + 1 if personas else 1
+    
+    id = 1
+
+    if personas:
+        id = max(personas.keys()) + 1
 
     nombre = input('Nombre: ')
     apellidos = input('Apellidos: ')
@@ -82,6 +104,35 @@ def borrar():
     id = int(input('Id a borrar: '))
 
     del personas[id]
+
+def cargar():
+    global personas
+    
+    import pickle
+    with open('personas.per', 'rb') as f:
+        personas = pickle.load(f)
+
+def guardar():
+    import pickle
+    with open('personas.per', 'wb') as f:
+        pickle.dump(personas, f)
+
+def importar_json():
+    global personas
+
+    personas = {}
+
+    import json
+    with open('personas.json', 'r') as f:
+        personas_json = json.load(f)
+        for id, persona in personas_json.items():
+            personas[int(id)] = Persona(int(id), persona['nombre'], persona['apellidos'])
+
+def exportar_json():
+    import json
+    with open('personas.json', 'w') as f:
+        personas_json = {id: {'nombre': persona.nombre, 'apellidos': persona.apellidos} for id, persona in personas.items()}
+        json.dump(personas_json, f)
 
 def salir():
     print('Gracias por usar esta aplicación')
